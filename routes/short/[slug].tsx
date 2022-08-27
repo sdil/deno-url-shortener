@@ -16,13 +16,13 @@ export const handler: Handlers<null> = {
     async GET(_req, ctx): Response {
         const slug = ctx.params.slug
         const result = await connection.queryObject(
-            "SELECT long_link FROM links WHERE slug = $SLUG",
+            "SELECT long_url FROM links WHERE slug = $SLUG",
             { slug: slug }
         )
 
         if (result.rowCount > 0) {
-            const longLink = result.rows[0].long_link
-            return Response.redirect(longLink, 302)
+            const longUrl = result.rows[0].long_url
+            return Response.redirect(longUrl, 302)
         } else {
             return ctx.render(null)
         }
