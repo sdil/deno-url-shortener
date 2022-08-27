@@ -1,30 +1,35 @@
 /** @jsx h */
 import { h } from "preact";
 import { tw } from "@twind";
-import { Client } from "https://deno.land/x/postgres@v0.16.1/mod.ts";
+import * as postgres from "https://deno.land/x/postgres@v0.16.1/mod.ts";
 import { Handlers, HandlerContext } from "$fresh/server.ts";
 
-// const client = new Client({
-//   user: "postgres",
-//   password: "mysecretpassword",
-//   database: "postgres",
-//   hostname: "localhost",
-//   port: 5432,
-// });
-// await client.connect();
+// Connect to Postgres
+// Ref: https://deno.com/deploy/docs/tutorial-postgres
+// Get the connection string from the environment variable "DATABASE_URL"
+const databaseUrl = Deno.env.get("DATABASE_URL")!;
+
+// Create a database pool with three connections that are lazily established
+const pool = new postgres.Pool(databaseUrl, 3, true);
+const connection = await pool.connect();
 
 export const handler: Handlers<null> = {
   async POST(req: Request, ctx: HandlerContext): Promise<Response> {
     const data = await req.formData()
+    const long_url = data.get('url')
     console.log("Shortening link", data.get('url'))
-    // const result = await client.queryArray(`SELECT 'Hello'`)
-    // console.log(result.rows[0][0])
+    const result = await connection.queryObject(
+      "INSERT INTO links (long_link) VALUES ($LONG_LINK) RETURNING id",
+      { long_link: long_url }
+    )
+
+    const id = result.rows[0].id
 
     // How to handle relative path redirection
     // https://github.com/denoland/fresh/discussions/511#discussioncomment-3157429
     return new Response("", {
       status: 302,
-      headers: { Location: "/details/x" },
+      headers: { Location: `/details/${id}` },
     });
   },
 };

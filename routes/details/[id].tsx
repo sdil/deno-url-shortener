@@ -9,12 +9,13 @@ export const handler: Handlers<null> = {
 };
 
 export default function ShortLinkDetails(props: PageProps) {
+    const { id } = props.params
     return <div>
         <div>
             Link Detail
         </div>
         <div>
-            Click link here <a href="/short/x">short link</a>
-        </div>
-    </div>;
+            Click link here <a href={`/short/${id}`}>short link</a>
+    </div>
+    </div >;
 }
