@@ -20,8 +20,6 @@ export const handler: Handlers<null> = {
             { id: id }
         )
 
-        console.log(result)
-
         if (result.rowCount > 0) {
             const longLink = result.rows[0].long_link
             return Response.redirect(longLink, 302)
