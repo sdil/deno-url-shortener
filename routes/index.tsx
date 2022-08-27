@@ -2,7 +2,7 @@
 import { h } from "preact";
 import { tw } from "@twind";
 import { Client } from "https://deno.land/x/postgres@v0.16.1/mod.ts";
-import { Handlers, PageProps } from "$fresh/server.ts";
+import { Handlers, HandlerContext } from "$fresh/server.ts";
 
 // const client = new Client({
 //   user: "postgres",
@@ -14,7 +14,9 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 // await client.connect();
 
 export const handler: Handlers<null> = {
-  async POST(_, ctx): Promise<Response> {
+  async POST(req: Request, ctx: HandlerContext): Promise<Response> {
+    const data = await req.formData()
+    console.log("Shortening link", data.get('url'))
     // const result = await client.queryArray(`SELECT 'Hello'`)
     // console.log(result.rows[0][0])
 
@@ -38,7 +40,7 @@ export default function Home() {
           <label>
             Long URL
           </label>
-          <input type='text' />
+          <input name="url" type='url' />
           <input type='submit' />
         </form>
       </p>

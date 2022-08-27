@@ -4,7 +4,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 
 export const handler: Handlers<null> = {
     GET(_, ctx): Response {
-        return ctx.render(null)
+        return ctx.render(null, 404)
     },
 };
 
