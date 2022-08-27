@@ -14,10 +14,10 @@ const connection = await pool.connect();
 
 export const handler: Handlers<null> = {
     async GET(_req, ctx): Response {
-        const id = ctx.params.id
+        const slug = ctx.params.slug
         const result = await connection.queryObject(
-            "SELECT long_link FROM links WHERE id = $ID",
-            { id: id }
+            "SELECT long_link FROM links WHERE slug = $SLUG",
+            { slug: slug }
         )
 
         if (result.rowCount > 0) {
