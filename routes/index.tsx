@@ -4,6 +4,7 @@ import { tw } from "@twind";
 import * as postgres from "https://deno.land/x/postgres@v0.16.1/mod.ts";
 import { Handlers, HandlerContext } from "$fresh/server.ts";
 import { nanoid } from "https://deno.land/x/nanoid@v3.0.0/nanoid.ts";
+import Layout from "layout";
 
 // Connect to Postgres
 // Ref: https://deno.com/deploy/docs/tutorial-postgres
@@ -39,19 +40,18 @@ export const handler: Handlers<null> = {
 
 export default function Home() {
   return (
-    <div class={tw`p-4 mx-auto max-w-screen-md`}>
-      <h1 class={tw`text-4xl`}>
-        URL Shortener
-      </h1>
-      <p class={tw`my-6`}>
-        <form method="post">
-          <label>
+    <Layout>
+      <p class="text-lg font-medium text-gray-900">Shorten your link</p>
+
+      <form method="post">
+        <div class={tw`mb-6`}>
+          <label class={tw`block mb-2 text-sm font-medium text-gray-900`}>
             Long URL
           </label>
-          <input name="url" type='url' />
-          <input type='submit' />
-        </form>
-      </p>
-    </div>
+          <input name="url" type='url' class={tw`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5`} />
+        </div>
+        <input type='submit' class={tw`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center`} />
+      </form>
+    </Layout>
   );
 }
