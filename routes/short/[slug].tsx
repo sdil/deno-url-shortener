@@ -13,22 +13,22 @@ const pool = new postgres.Pool(databaseUrl, 3, true);
 const connection = await pool.connect();
 
 export const handler: Handlers<null> = {
-    async GET(_req, ctx): Response {
-        const slug = ctx.params.slug
-        const result = await connection.queryObject(
-            "SELECT long_url FROM links WHERE slug = $SLUG",
-            { slug: slug }
-        )
+  async GET(_req, ctx): Response {
+    const slug = ctx.params.slug;
+    const result = await connection.queryObject(
+      "SELECT long_url FROM links WHERE slug = $SLUG",
+      { slug: slug },
+    );
 
-        if (result.rowCount > 0) {
-            const longUrl = result.rows[0].long_url
-            return Response.redirect(longUrl, 302)
-        } else {
-            return ctx.render(null)
-        }
-    },
+    if (result.rowCount > 0) {
+      const longUrl = result.rows[0].long_url;
+      return Response.redirect(longUrl, 302);
+    } else {
+      return ctx.render(null);
+    }
+  },
 };
 
 export default function Greet(props: PageProps) {
-    return <div>This link is invalid</div>;
+  return <div>This link is invalid</div>;
 }

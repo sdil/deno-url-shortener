@@ -2,9 +2,9 @@
 import { h } from "preact";
 import { tw } from "@twind";
 import * as postgres from "https://deno.land/x/postgres@v0.16.1/mod.ts";
-import { Handlers, HandlerContext } from "$fresh/server.ts";
+import { HandlerContext, Handlers } from "$fresh/server.ts";
 import { nanoid } from "https://deno.land/x/nanoid@v3.0.0/nanoid.ts";
-import Layout from "layout";
+import Layout from "@/components/Layout.tsx";
 
 // Connect to Postgres
 // Ref: https://deno.com/deploy/docs/tutorial-postgres
@@ -17,17 +17,17 @@ const connection = await pool.connect();
 
 export const handler: Handlers<null> = {
   async POST(req: Request, ctx: HandlerContext): Promise<Response> {
-    const data = await req.formData()
-    const long_url = data.get('url')
-    const slug = nanoid(9)
-    console.log("Shortening link", data.get('url'))
+    const data = await req.formData();
+    const long_url = data.get("url");
+    const slug = nanoid(9);
+    console.log("Shortening link", data.get("url"));
     const result = await connection.queryObject(
       "INSERT INTO links (slug, long_url) VALUES ($SLUG, $LONG_URL)",
       {
         slug: slug,
-        long_url: long_url
-      }
-    )
+        long_url: long_url,
+      },
+    );
 
     // How to handle relative path redirection
     // https://github.com/denoland/fresh/discussions/511#discussioncomment-3157429
@@ -48,9 +48,16 @@ export default function Home() {
           <label class={tw`block mb-2 text-sm font-medium text-gray-900`}>
             Long URL
           </label>
-          <input name="url" type='url' class={tw`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5`} />
+          <input
+            name="url"
+            type="url"
+            class={tw`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5`}
+          />
         </div>
-        <input type='submit' class={tw`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center`} />
+        <input
+          type="submit"
+          class={tw`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center`}
+        />
       </form>
     </Layout>
   );
