@@ -29,10 +29,6 @@ export const handler = async (req: Request, _ctx: HandlerContext): Response => {
         status: 302,
         headers: { location: "/" },
       });
-    } else {
-      // TODO: Invalid user
-      console.log("Invalid access token", maybeAccessToken);
-      return new Response("Invalid token", { status: 400 });
     }
   }
 
