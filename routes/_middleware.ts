@@ -24,16 +24,20 @@ export async function handler(
 
     if (accessToken) {
         const result = await connection.queryObject(
-            "SELECT username FROM users WHERE access_token = $TOKEN",
+            "SELECT username FROM users WHERE access_token = $TOKEN AND access_token IS NOT NULL",
             { token: accessToken },
         );
-        // console.log(result.rows[0].username)
-        ctx.state.loggedIn = true
-        ctx.state.username = result.rows[0].username
-    } else {
-        ctx.state.loggedIn = false
+
+        if (result.rowCount > 0) {
+            ctx.state.loggedIn = true
+            ctx.state.username = result.rows[0].username
+            const resp = await ctx.next()
+            return resp
+        }
     }
 
+    // If no access token or invalid access_token
+    ctx.state.loggedIn = false
     const resp = await ctx.next()
     return resp
 }

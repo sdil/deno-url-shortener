@@ -18,7 +18,7 @@ export const handler = async (req: Request, _ctx: HandlerContext): Response => {
 
     if (maybeAccessToken) {
         const result = await connection.queryObject(
-            "SELECT COUNT(*) FROM users WHERE access_token = $TOKEN",
+            "SELECT username FROM users WHERE access_token = $TOKEN AND access_token IS NOT NULL",
             { token: maybeAccessToken },
         );
 
