@@ -1,1 +1,1 @@
-import { useState, useEffect } from "preact/hooks"
+import { useEffect, useState } from "preact/hooks";

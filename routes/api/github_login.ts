@@ -5,7 +5,7 @@ export const handler: Handler = (_req: Request): Response => {
   url.searchParams.set("client_id", Deno.env.get("GITHUB_CLIENT_ID"));
   url.searchParams.set(
     "redirect_uri",
-    Deno.env.get("GITHUB_CALLBACK_URL")
+    Deno.env.get("GITHUB_CALLBACK_URL"),
   );
   return Response.redirect(url, 302);
 };

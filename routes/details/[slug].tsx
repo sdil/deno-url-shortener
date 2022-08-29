@@ -6,7 +6,10 @@ import { tw } from "@twind";
 
 export const handler: Handlers<null> = {
   async GET(_, ctx): Response {
-    return ctx.render({ loggedIn: ctx.state.loggedIn, username: ctx.state.username })
+    return ctx.render({
+      loggedIn: ctx.state.loggedIn,
+      username: ctx.state.username,
+    });
   },
 };
 
