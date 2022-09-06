@@ -5,10 +5,9 @@ import Layout from "@/components/Layout.tsx";
 import { tw } from "@twind";
 
 export const handler: Handlers<null> = {
-  async GET(_, ctx): Response {
+  async GET(_, ctx): Promise<Response> {
     return ctx.render({
-      loggedIn: ctx.state.loggedIn,
-      username: ctx.state.username,
+      ...ctx.state,
     });
   },
 };

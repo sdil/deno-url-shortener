@@ -18,8 +18,7 @@ const connection = await pool.connect();
 export const handler: Handlers<null> = {
   async GET(_req: Request, ctx: HandlerContext) {
     return ctx.render({
-      loggedIn: ctx.state.loggedIn,
-      username: ctx.state.username,
+      ...ctx.state,
     });
   },
 
@@ -46,7 +45,6 @@ export const handler: Handlers<null> = {
 };
 
 export default function Home(props) {
-  console.log("index", props);
   return (
     <Layout loggedIn={props.data.loggedIn}>
       <p class="text-lg font-medium text-gray-900">Shorten your link</p>

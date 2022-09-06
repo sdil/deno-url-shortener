@@ -21,7 +21,6 @@ export class GitHubApi {
     const data = await response.json();
     const accessToken = data["access_token"];
     if (typeof accessToken !== "string") {
-      console.log(accessToken);
       throw new Error("Access token was not a string.");
     }
     return accessToken;
