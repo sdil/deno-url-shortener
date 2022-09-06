@@ -45,8 +45,9 @@ export const handler: Handlers<null> = {
 };
 
 export default function Home(props) {
+  const { loggedIn, username } = props.data;
   return (
-    <Layout loggedIn={props.data.loggedIn}>
+    <Layout auth={{ loggedIn, username }}>
       <p class="text-lg font-medium text-gray-900">Shorten your link</p>
 
       <form method="post">

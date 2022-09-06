@@ -13,9 +13,10 @@ export const handler: Handlers<null> = {
 };
 
 export default function ShortLinkDetails(props: PageProps) {
+  const { loggedIn, username } = props.data;
   const { slug } = props.params;
   return (
-    <Layout loggedIn={props.data.loggedIn}>
+    <Layout auth={{ loggedIn, username }}>
       <p class="text-4xl font-medium text-gray-900">Link details</p>
       <div>
         Click link{" "}
