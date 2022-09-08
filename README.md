@@ -33,7 +33,7 @@ This will watch the project directory and restart as necessary.
 
 ### What I like about Deno/Fresh
 
-- Super fast
+- Super fast, both from backend (Deno performance is sick) and frontend (Preact performance is sick)
 
 ### What I don't like about Deno/Fresh
 

@@ -1,9 +1,5 @@
-/** @jsx h */
-import { h } from "preact";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import Layout from "@/components/Layout.tsx";
-import { tw } from "@twind";
-
 export const handler: Handlers<null> = {
   async GET(_, ctx): Promise<Response> {
     return ctx.render({
@@ -20,7 +16,7 @@ export default function ShortLinkDetails(props: PageProps) {
       <p class="text-4xl font-medium text-gray-900">Link details</p>
       <div>
         Click link{" "}
-        <a class={tw`text-underline`} href={`/short/${slug}`}>here</a>
+        <a class="text-underline" href={`/short/${slug}`}>here</a>
       </div>
     </Layout>
   );

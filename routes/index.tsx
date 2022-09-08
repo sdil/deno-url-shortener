@@ -1,6 +1,3 @@
-/** @jsx h */
-import { h } from "preact";
-import { tw } from "@twind";
 import * as postgres from "https://deno.land/x/postgres@v0.16.1/mod.ts";
 import { HandlerContext, Handlers } from "$fresh/server.ts";
 import { nanoid } from "https://deno.land/x/nanoid@v3.0.0/nanoid.ts";
@@ -51,19 +48,19 @@ export default function Home(props) {
       <p class="text-lg font-medium text-gray-900">Shorten your link</p>
 
       <form method="post">
-        <div class={tw`mb-6`}>
-          <label class={tw`block mb-2 text-sm font-medium text-gray-900`}>
+        <div class="mb-6">
+          <label class="block mb-2 text-sm font-medium text-gray-900">
             Long URL
           </label>
           <input
             name="url"
             type="url"
-            class={tw`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5`}
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           />
         </div>
         <input
           type="submit"
-          class={tw`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center`}
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
         />
       </form>
     </Layout>
