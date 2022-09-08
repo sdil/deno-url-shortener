@@ -14,12 +14,14 @@ interface LayoutProps {
 export default function Layout({ children, auth }: LayoutProps) {
   return (
     <div class="mx-auto px-6 max-w-screen-md py-32">
-      <h1 class="max-w-lg text-3xl font-bold leading-loose text-gray-900">
-        <a href="/">
-          URL Shortener
-        </a>
+      <div class="flex flex-none items-center py-6 justify-between align-middle">
+        <h1 class="max-w-lg text-3xl font-bold leading-loose text-gray-900">
+          <a href="/">
+            URL Shortener
+          </a>
+        </h1>
         {auth.loggedIn ? <UserInfo auth={auth} /> : <LoginButton />}
-      </h1>
+      </div>
       <p class="my-6 max-w-lg">
         {children}
       </p>
