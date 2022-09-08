@@ -1,6 +1,6 @@
 import { ComponentChildren } from "preact";
-import LoginButton from "@/components/LoginButton.tsx";
-import UserInfo from "@/components/UserInfo.tsx";
+import LoginButton from "@/islands/LoginButton.tsx";
+import UserInfo from "@/islands/UserInfo.tsx";
 
 interface AuthData {
   username: String;

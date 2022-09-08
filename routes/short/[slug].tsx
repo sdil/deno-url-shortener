@@ -1,4 +1,4 @@
-import { Handlers, PageProps } from "$fresh/server.ts";
+import { Handlers } from "$fresh/server.ts";
 import * as postgres from "https://deno.land/x/postgres@v0.16.1/mod.ts";
 
 // Connect to Postgres
@@ -18,15 +18,11 @@ export const handler: Handlers<null> = {
       { slug: slug },
     );
 
-    if (result.rowCount > 0) {
-      const longUrl = result.rows[0].long_url;
-      return Response.redirect(longUrl, 302);
-    } else {
-      return ctx.render(null);
+    if (result.rowCount == 0) {
+      return ctx.renderNotFound()
     }
+
+    const longUrl = result.rows[0].long_url;
+    return Response.redirect(longUrl, 302);
   },
 };
-
-export default function Greet(props: PageProps) {
-  return <div>This link is invalid</div>;
-}
