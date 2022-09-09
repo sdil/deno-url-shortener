@@ -1,6 +1,6 @@
 import { ComponentChildren } from "preact";
-import LoginButton from "@/islands/LoginButton.tsx";
-import UserInfo from "@/islands/UserInfo.tsx";
+import LoginButton from "@/components/LoginButton.tsx";
+import UserInfo from "@/components/UserInfo.tsx";
 
 interface AuthData {
   username: String;
@@ -21,6 +21,9 @@ export default function Layout({ children, auth }: LayoutProps) {
           </a>
         </h1>
         {auth.loggedIn ? <UserInfo auth={auth} /> : <LoginButton />}
+      </div>
+      <div>
+        {auth.loggedIn ? <a href='/me'>View all links</a> : ''}
       </div>
       <p class="my-6 max-w-lg">
         {children}
