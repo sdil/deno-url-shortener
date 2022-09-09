@@ -25,10 +25,11 @@ export const handler: Handlers<null> = {
     const slug = nanoid(9);
     console.log("Shortening link", data.get("url"));
     const result = await connection.queryObject(
-      "INSERT INTO links (slug, long_url) VALUES ($SLUG, $LONG_URL)",
+      "INSERT INTO links (slug, long_url, user_id) VALUES ($SLUG, $LONG_URL, $USER_ID)",
       {
         slug: slug,
         long_url: long_url,
+        user_id: ctx.state.userId
       },
     );
 

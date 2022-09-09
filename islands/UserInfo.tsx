@@ -12,7 +12,7 @@ export default function UserInfo({ auth }: Props) {
     <div>
       <div class="font-semibold text-sm">
         <span class="mr-4">
-          Logged in as {auth.username}
+          Logged in as <a href='/me'>{auth.username}</a>
         </span>
         <button
           onClick={() => window.location.href = "/api/logout"}

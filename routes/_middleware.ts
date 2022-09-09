@@ -13,7 +13,8 @@ const connection = await pool.connect();
 
 interface State {
   loggedIn: boolean;
-  username: String;
+  username: string;
+  userId: number;
 }
 
 export async function handler(
@@ -24,12 +25,13 @@ export async function handler(
 
   if (accessToken) {
     const result = await connection.queryObject(
-      "SELECT username FROM users WHERE access_token = $TOKEN AND access_token IS NOT NULL",
+      "SELECT id, username FROM users WHERE access_token = $TOKEN AND access_token IS NOT NULL",
       { token: accessToken },
     );
 
     if (result.rowCount > 0) {
       ctx.state.loggedIn = true;
+      ctx.state.userId = result.rows[0].id;
       ctx.state.username = result.rows[0].username;
       const resp = await ctx.next();
       return resp;
