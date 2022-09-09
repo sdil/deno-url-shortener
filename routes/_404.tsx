@@ -9,10 +9,9 @@ export const handler: Handlers<null> = {
   },
 };
 
-
 export default function ShortLinkDetails(props: UnknownPageProps) {
-  const loggedIn = false
-  const username = 'test'
+  const loggedIn = false;
+  const username = "test";
   return (
     <Layout auth={{ loggedIn, username }}>
       <div>

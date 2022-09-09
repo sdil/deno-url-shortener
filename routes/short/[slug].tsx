@@ -19,7 +19,7 @@ export const handler: Handlers<null> = {
     );
 
     if (result.rowCount == 0) {
-      return ctx.renderNotFound()
+      return ctx.renderNotFound();
     }
 
     const longUrl = result.rows[0].long_url;

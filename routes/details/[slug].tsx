@@ -20,7 +20,7 @@ export const handler: Handlers<null> = {
     );
 
     if (result.rowCount == 0) {
-      return ctx.renderNotFound()
+      return ctx.renderNotFound();
     }
 
     const longUrl = result.rows[0].long_url;
@@ -30,7 +30,6 @@ export const handler: Handlers<null> = {
   },
 };
 
-
 export default function ShortLinkDetails(props: PageProps) {
   const { loggedIn, username } = props.data;
   const { slug } = props.params;
@@ -38,8 +37,7 @@ export default function ShortLinkDetails(props: PageProps) {
     <Layout auth={{ loggedIn, username }}>
       <p class="text-4xl font-medium text-gray-900">Link details</p>
       <div>
-        Click link{" "}
-        <a class="text-underline" href={`/short/${slug}`}>here</a>
+        Click link <a class="text-underline" href={`/short/${slug}`}>here</a>
       </div>
     </Layout>
   );
