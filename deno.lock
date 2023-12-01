@@ -3,6 +3,7 @@
   "packages": {
     "specifiers": {
       "npm:cssnano@6.0.1": "npm:cssnano@6.0.1_postcss@8.4.31",
+      "npm:dayjs@1.11.7": "npm:dayjs@1.11.7",
       "npm:postcss@8.4.31": "npm:postcss@8.4.31",
       "npm:tailwindcss@3.3.5": "npm:tailwindcss@3.3.5_postcss@8.4.31"
     },
@@ -247,6 +248,10 @@
         "dependencies": {
           "css-tree": "css-tree@2.2.1"
         }
+      },
+      "dayjs@1.11.7": {
+        "integrity": "sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==",
+        "dependencies": {}
       },
       "didyoumean@1.2.2": {
         "integrity": "sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==",

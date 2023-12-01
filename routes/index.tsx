@@ -17,7 +17,12 @@ export const handler: Handlers<null> = {
 
     console.log("Shortening link", longUrl);
     const key = ['url', slug]
-    await kv.set(key, {longUrl})
+    const shortUrl: ShortUrl = {
+      slug,
+      longUrl,
+      createdAt: new Date().toISOString(),
+    }
+    await kv.set(key, shortUrl)
 
     // How to handle relative path redirection
     // https://github.com/denoland/fresh/discussions/511#discussioncomment-3157429
