@@ -1,5 +1,4 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import Layout from "@/components/Layout.tsx";
 
 const kv = await Deno.openKv();
 
@@ -21,7 +20,7 @@ export default function ShortLinkDetails(props: PageProps) {
   const { loggedIn, username, short } = props.data;
   const { slug } = props.params;
   return (
-    <Layout auth={{ loggedIn, username }}>
+    <>
       <p class="text-4xl font-medium text-gray-900">Link details</p>
       <div>
         Click link <a class="text-underline" href={`/short/${slug}`}>here</a>
@@ -29,6 +28,6 @@ export default function ShortLinkDetails(props: PageProps) {
       <div>
         Long Url: { short.longUrl }
       </div>
-    </Layout>
+    </>
   );
 }

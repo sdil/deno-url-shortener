@@ -1,6 +1,5 @@
 import { HandlerContext, Handlers } from "$fresh/server.ts";
 import { nanoid } from "https://deno.land/x/nanoid@v3.0.0/nanoid.ts";
-import Layout from "@/components/Layout.tsx";
 
 const kv = await Deno.openKv();
 
@@ -32,7 +31,7 @@ export const handler: Handlers<null> = {
 export default function Home(props) {
   const { loggedIn, username } = props.data;
   return (
-    <Layout auth={{ loggedIn, username }}>
+    <>
       <p class="text-lg font-medium text-gray-900">Shorten your link</p>
 
       <form method="post">
@@ -51,6 +50,6 @@ export default function Home(props) {
           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
         />
       </form>
-    </Layout>
+    </>
   );
 }

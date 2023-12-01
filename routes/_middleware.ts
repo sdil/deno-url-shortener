@@ -13,6 +13,7 @@ export async function handler(
   req: Request,
   ctx: MiddlewareHandlerContext<State>,
 ) {
+  const resp = await ctx.next();
   const accessToken = getCookies(req.headers)["session_token"];
 
   if (accessToken) {
@@ -31,7 +32,7 @@ export async function handler(
   }
 
   // If no access token or invalid access_token
-  ctx.state.loggedIn = false;
-  const resp = await ctx.next();
+  // ctx.state.loggedIn = false;
+  // const resp = await ctx.next();
   return resp;
 }
