@@ -1,15 +1,5 @@
 import { HandlerContext } from "$fresh/server.ts";
 import { deleteCookie, getCookies } from "$std/http/cookie.ts";
-import * as postgres from "https://deno.land/x/postgres@v0.16.1/mod.ts";
-
-// Connect to Postgres
-// Ref: https://deno.com/deploy/docs/tutorial-postgres
-// Get the connection string from the environment variable "DATABASE_URL"
-const databaseUrl = Deno.env.get("DATABASE_URL")!;
-
-// Create a database pool with three connections that are lazily established
-const pool = new postgres.Pool(databaseUrl, 3, true);
-const connection = await pool.connect();
 
 export const handler = async (req: Request, _ctx: HandlerContext): Response => {
   // const maybeAccessToken = getCookies(req.headers)["session_token"];

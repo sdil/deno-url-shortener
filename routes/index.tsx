@@ -1,16 +1,8 @@
-import * as postgres from "https://deno.land/x/postgres@v0.16.1/mod.ts";
 import { HandlerContext, Handlers } from "$fresh/server.ts";
 import { nanoid } from "https://deno.land/x/nanoid@v3.0.0/nanoid.ts";
 import Layout from "@/components/Layout.tsx";
 
-// Connect to Postgres
-// Ref: https://deno.com/deploy/docs/tutorial-postgres
-// Get the connection string from the environment variable "DATABASE_URL"
-const databaseUrl = Deno.env.get("DATABASE_URL")!;
-
-// Create a database pool with three connections that are lazily established
-const pool = new postgres.Pool(databaseUrl, 3, true);
-const connection = await pool.connect();
+const kv = await Deno.openKv();
 
 export const handler: Handlers<null> = {
   async GET(_req: Request, ctx: HandlerContext) {
@@ -21,17 +13,12 @@ export const handler: Handlers<null> = {
 
   async POST(req: Request, ctx: HandlerContext): Promise<Response> {
     const data = await req.formData();
-    const long_url = data.get("url");
+    const longUrl = data.get("url");
     const slug = nanoid(9);
-    console.log("Shortening link", data.get("url"));
-    const result = await connection.queryObject(
-      "INSERT INTO links (slug, long_url, user_id) VALUES ($SLUG, $LONG_URL, $USER_ID)",
-      {
-        slug: slug,
-        long_url: long_url,
-        user_id: ctx.state.userId
-      },
-    );
+
+    console.log("Shortening link", longUrl);
+    const key = ['url', slug]
+    await kv.set(key, {longUrl})
 
     // How to handle relative path redirection
     // https://github.com/denoland/fresh/discussions/511#discussioncomment-3157429
