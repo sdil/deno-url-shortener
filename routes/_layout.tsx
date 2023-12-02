@@ -23,9 +23,11 @@ export default function Layout({ Component, state }: LayoutProps) {
         </h1>
         {/* {auth.loggedIn ? <UserInfo auth={auth} /> : <LoginButton />} */}
       </div>
-      {/* <div>
+      {
+        /* <div>
         {auth.loggedIn ? <a href='/me'>View all links</a> : ''}
-      </div> */}
+      </div> */
+      }
       <p class="my-6 max-w-lg">
         <Component />
       </p>

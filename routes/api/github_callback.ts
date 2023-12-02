@@ -3,7 +3,6 @@ import { getCookies, setCookie } from "$std/http/cookie.ts";
 import { githubApi } from "@/utils/githubApi.ts";
 import { nanoid } from "https://deno.land/x/nanoid@v3.0.0/nanoid.ts";
 
-
 export const handler = async (req: Request, _ctx: HandlerContext): Response => {
   const maybeAccessToken = getCookies(req.headers)["session_token"];
 
@@ -49,7 +48,7 @@ export const handler = async (req: Request, _ctx: HandlerContext): Response => {
 
   setCookie(headers, {
     name: "session_token",
-    value: 'accessToken',
+    value: "accessToken",
     maxAge: 60 * 60 * 24 * 7,
     httpOnly: true,
     sameSite: "Lax",

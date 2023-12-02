@@ -5,7 +5,7 @@ const kv = await Deno.openKv();
 export const handler: Handlers<null> = {
   async GET(_req, ctx): Response {
     const slug = ctx.params.slug;
-    const shortUrl = (await kv.get(['url', slug])).value satisfies ShortUrl
+    const shortUrl = (await kv.get(["url", slug])).value satisfies ShortUrl;
 
     return ctx.render({
       loggedIn: true,
@@ -19,7 +19,7 @@ export const handler: Handlers<null> = {
 export default function ShortLinkDetails(props: PageProps) {
   const { loggedIn, username, shortUrl } = props.data;
   const { slug } = props.params;
-  const localTime = new Date(shortUrl.createdAt).toLocaleString()
+  const localTime = new Date(shortUrl.createdAt).toLocaleString();
 
   return (
     <>
@@ -28,10 +28,10 @@ export default function ShortLinkDetails(props: PageProps) {
         Click link <a class="text-underline" href={`/short/${slug}`}>here</a>
       </div>
       <div>
-        Long Url: { shortUrl.longUrl }
+        Long Url: {shortUrl.longUrl}
       </div>
       <div>
-        Created at { localTime }
+        Created at {localTime}
       </div>
     </>
   );

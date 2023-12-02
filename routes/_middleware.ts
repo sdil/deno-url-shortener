@@ -17,8 +17,8 @@ export async function handler(
   const accessToken = getCookies(req.headers)["session_token"];
 
   if (accessToken) {
-    const login_info = kv.get(["session_token", accessToken])
-    
+    const login_info = kv.get(["session_token", accessToken]);
+
     if (result.rowCount > 0) {
       ctx.state.loggedIn = true;
       ctx.state.userId = login_info.id;

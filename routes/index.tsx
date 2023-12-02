@@ -16,13 +16,13 @@ export const handler: Handlers<null> = {
     const slug = nanoid(9);
 
     console.log("Shortening link", longUrl);
-    const key = ['url', slug]
+    const key = ["url", slug];
     const shortUrl: ShortUrl = {
       slug,
       longUrl,
       createdAt: new Date().toISOString(),
-    }
-    await kv.set(key, shortUrl)
+    };
+    await kv.set(key, shortUrl);
 
     // How to handle relative path redirection
     // https://github.com/denoland/fresh/discussions/511#discussioncomment-3157429

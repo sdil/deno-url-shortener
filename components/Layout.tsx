@@ -23,7 +23,7 @@ export default function Layout({ children, auth }: LayoutProps) {
         {auth.loggedIn ? <UserInfo auth={auth} /> : <LoginButton />}
       </div>
       <div>
-        {auth.loggedIn ? <a href='/me'>View all links</a> : ''}
+        {auth.loggedIn ? <a href="/me">View all links</a> : ""}
       </div>
       <p class="my-6 max-w-lg">
         {children}
